@@ -1,0 +1,728 @@
+openapi: "3.0.1"
+info:
+  title: "DermaIntel API"
+  description: |
+    AI-Powered Clinical Intelligence for Dermatology.
+    RESTful API providing evidence-based query responses, paper browsing,
+    and RAG-powered chatbot for dermatologists.
+  version: "1.0.0"
+  contact:
+    name: "NK / Ahead Consulting"
+    email: "admin@dermaintel.com"
+  license:
+    name: "Proprietary"
+
+servers:
+  - url: "https://{apiId}.execute-api.{region}.amazonaws.com/{stage}"
+    description: "AWS API Gateway HTTP API"
+    variables:
+      apiId:
+        default: "api-id"
+      region:
+        default: "ap-south-1"
+      stage:
+        default: "dev"
+
+# ---------------------------------------------------------------------------
+# Security Schemes
+# ---------------------------------------------------------------------------
+components:
+  securitySchemes:
+    CognitoAuth:
+      type: "oauth2"
+      description: "Cognito User Pool JWT Authorization"
+      flows:
+        implicit:
+          authorizationUrl: "https://${cognito_domain}.auth.${region}.amazoncognito.com/oauth2/authorize"
+          scopes:
+            openid: "OpenID Connect"
+            email: "Access email"
+            profile: "Access profile"
+      x-amazon-apigateway-authorizer:
+        type: "jwt"
+        identitySource: "$request.header.Authorization"
+        jwtConfiguration:
+          audience:
+            - "${cognito_client_id}"
+          issuer: "https://cognito-idp.${region}.amazonaws.com/${cognito_user_pool_id}"
+
+  # ---------------------------------------------------------------------------
+  # Reusable Schemas
+  # ---------------------------------------------------------------------------
+  schemas:
+    # -- Query --
+    QueryRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: "Natural language clinical query"
+          example: "What is the latest evidence on secukinumab vs dupilumab for moderate-to-severe psoriasis?"
+          minLength: 5
+          maxLength: 2000
+        model_preference:
+          type: string
+          enum: [haiku, sonnet]
+          description: "LLM model preference (pro/premium users only)"
+          default: haiku
+
+    QueryResponse:
+      type: object
+      properties:
+        answer:
+          type: string
+          description: "Full clinical response with evidence grading and citations"
+        evidence_grade:
+          type: string
+          enum: [A, B, C]
+          description: "Overall evidence grade (A=RCT/meta-analysis, B=cohort, C=case report)"
+        citations:
+          type: array
+          items:
+            $ref: "#/components/schemas/Citation"
+        papers_consulted:
+          type: integer
+          description: "Number of papers analyzed"
+        confidence:
+          type: string
+          enum: [high, medium, low]
+        model_used:
+          type: string
+          enum: [haiku, sonnet]
+        query_time_ms:
+          type: integer
+          description: "Total processing time in milliseconds"
+
+    Citation:
+      type: object
+      properties:
+        paper_id:
+          type: string
+          example: "PMC12481837"
+        title:
+          type: string
+        journal:
+          type: string
+          example: "JAAD"
+        year:
+          type: string
+          example: "2026"
+        section:
+          type: string
+          description: "Section where evidence was found (e.g., Results, Discussion)"
+        page:
+          type: string
+
+    # -- Chat --
+    ChatRequest:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: "Doctor's conversational message"
+          minLength: 1
+          maxLength: 4000
+          example: "What are the first-line treatments for moderate acne vulgaris?"
+        session_id:
+          type: string
+          description: "Chat session ID for conversation continuity. Omit to start new session."
+          format: uuid
+
+    ChatResponse:
+      type: object
+      properties:
+        session_id:
+          type: string
+          format: uuid
+          description: "Session ID for follow-up messages"
+        response:
+          type: string
+          description: "AI-generated clinical response with evidence grading"
+        intent:
+          $ref: "#/components/schemas/ChatIntent"
+        papers_consulted:
+          type: integer
+        citations:
+          type: array
+          items:
+            $ref: "#/components/schemas/Citation"
+        confidence:
+          type: string
+          enum: [high, medium, low]
+        timestamp:
+          type: string
+          format: date-time
+
+    ChatIntent:
+      type: object
+      properties:
+        conditions:
+          type: array
+          items:
+            type: string
+          example: ["acne_vulgaris"]
+        drugs:
+          type: array
+          items:
+            type: string
+          example: ["isotretinoin", "doxycycline"]
+        intent_type:
+          type: string
+          enum: [diagnosis, treatment_protocol, drug_interaction, research_update, differential, follow_up, clarification, general]
+        complexity:
+          type: string
+          enum: [simple, medium, complex]
+        confidence:
+          type: string
+          enum: [high, medium, low]
+        is_follow_up:
+          type: boolean
+
+    # -- Papers --
+    PaperMetadata:
+      type: object
+      properties:
+        paper_id:
+          type: string
+          example: "PMC12481837"
+        title:
+          type: string
+        authors:
+          type: array
+          items:
+            type: string
+        journal:
+          type: string
+        pub_date:
+          type: string
+          format: date
+          example: "2026-03-15"
+        conditions:
+          type: array
+          items:
+            type: string
+        drugs:
+          type: array
+          items:
+            type: string
+        study_type:
+          type: string
+          enum: [RCT, meta-analysis, cohort, case-control, case_report, review, guideline]
+        evidence_grade:
+          type: string
+          enum: [A, B, C]
+        outcomes:
+          type: string
+          description: "Key outcome summary"
+        abstract_summary:
+          type: string
+          description: "2-3 sentence clinical summary"
+
+    PaperDetail:
+      allOf:
+        - $ref: "#/components/schemas/PaperMetadata"
+        - type: object
+          properties:
+            tree_structure:
+              type: object
+              description: "PageIndex tree structure for detailed exploration"
+            pdf_url:
+              type: string
+              format: uri
+              description: "Pre-signed S3 URL for PDF download"
+
+    PapersList:
+      type: object
+      properties:
+        papers:
+          type: array
+          items:
+            $ref: "#/components/schemas/PaperMetadata"
+        count:
+          type: integer
+        next_token:
+          type: string
+          description: "Pagination token for next page"
+
+    # -- Conditions --
+    ConditionSummary:
+      type: object
+      properties:
+        condition:
+          type: string
+          example: "psoriasis"
+        paper_count:
+          type: integer
+          example: 142
+        latest_paper_date:
+          type: string
+          format: date
+
+    ConditionsList:
+      type: object
+      properties:
+        conditions:
+          type: array
+          items:
+            $ref: "#/components/schemas/ConditionSummary"
+
+    # -- Feedback --
+    FeedbackRequest:
+      type: object
+      required:
+        - query_id
+        - rating
+      properties:
+        query_id:
+          type: string
+        rating:
+          type: string
+          enum: [helpful, not_helpful, incorrect]
+        comment:
+          type: string
+          maxLength: 1000
+
+    # -- Common --
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "Error message"
+        request_id:
+          type: string
+
+  # ---------------------------------------------------------------------------
+  # Reusable Parameters
+  # ---------------------------------------------------------------------------
+  parameters:
+    ConditionParam:
+      name: condition
+      in: query
+      schema:
+        type: string
+      description: "Filter by skin condition (e.g., psoriasis, acne_vulgaris)"
+    DrugParam:
+      name: drug
+      in: query
+      schema:
+        type: string
+      description: "Filter by drug name (e.g., secukinumab, dupilumab)"
+    JournalParam:
+      name: journal
+      in: query
+      schema:
+        type: string
+      description: "Filter by journal abbreviation (e.g., JAAD, BJD)"
+    StudyTypeParam:
+      name: study_type
+      in: query
+      schema:
+        type: string
+        enum: [RCT, meta-analysis, cohort, case-control, case_report, review, guideline]
+    LimitParam:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    NextTokenParam:
+      name: next_token
+      in: query
+      schema:
+        type: string
+      description: "Pagination token from previous response"
+
+# ---------------------------------------------------------------------------
+# Paths
+# ---------------------------------------------------------------------------
+paths:
+
+  # =========================================================================
+  # POST /query - Evidence-based clinical query
+  # =========================================================================
+  /query:
+    post:
+      operationId: "submitQuery"
+      summary: "Submit a clinical query"
+      description: |
+        Submit a natural language dermatology question. The system will:
+        1. Classify intent and extract medical entities
+        2. Discover relevant papers from the index
+        3. Navigate paper trees via RAG to find evidence
+        4. Synthesize an evidence-graded response with citations
+      tags:
+        - Query
+      security:
+        - CognitoAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QueryRequest"
+            examples:
+              treatment_query:
+                summary: "Treatment protocol query"
+                value:
+                  query: "What is the latest evidence on secukinumab vs dupilumab for moderate-to-severe psoriasis?"
+                  model_preference: "haiku"
+              drug_interaction:
+                summary: "Drug interaction query"
+                value:
+                  query: "Are there known interactions between methotrexate and biologics for psoriasis?"
+      responses:
+        "200":
+          description: "Successful evidence-based response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueryResponse"
+        "400":
+          description: "Invalid request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: "Unauthorized - invalid or missing JWT"
+        "429":
+          description: "Rate limit exceeded for user tier"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                error: "Daily query limit exceeded for free tier (5/day). Upgrade to Pro for 50 queries/day."
+        "500":
+          description: "Internal server error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "${query_orchestrator_invoke_arn}"
+        payloadFormatVersion: "2.0"
+
+  # =========================================================================
+  # POST /chat - RAG-powered conversational chatbot
+  # =========================================================================
+  /chat:
+    post:
+      operationId: "chatMessage"
+      summary: "Send a message to the AI chatbot"
+      description: |
+        Conversational RAG-powered interface for dermatologists. Supports
+        multi-turn conversations with context retention. The chatbot:
+        1. Classifies the message intent
+        2. Retrieves relevant papers via DynamoDB
+        3. Navigates paper tree structures for evidence
+        4. Generates a conversational, evidence-graded response
+
+        Send `session_id` from previous response for follow-up questions.
+      tags:
+        - Chatbot
+      security:
+        - CognitoAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChatRequest"
+            examples:
+              new_conversation:
+                summary: "Start new conversation"
+                value:
+                  message: "What are the first-line treatments for moderate acne vulgaris?"
+              follow_up:
+                summary: "Follow-up question"
+                value:
+                  message: "What about isotretinoin for severe cases?"
+                  session_id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+      responses:
+        "200":
+          description: "Successful chatbot response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChatResponse"
+        "400":
+          description: "Invalid request - empty message"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: "Unauthorized"
+        "429":
+          description: "Rate limit exceeded"
+        "500":
+          description: "Internal server error"
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "${chatbot_invoke_arn}"
+        payloadFormatVersion: "2.0"
+
+  # =========================================================================
+  # GET /papers - Browse research papers
+  # =========================================================================
+  /papers:
+    get:
+      operationId: "listPapers"
+      summary: "List indexed research papers"
+      description: |
+        Browse dermatology research papers by condition, drug, journal,
+        or study type. Results sorted by publication date (newest first).
+        Supports pagination via next_token.
+      tags:
+        - Papers
+      security:
+        - CognitoAuth: []
+      parameters:
+        - $ref: "#/components/parameters/ConditionParam"
+        - $ref: "#/components/parameters/DrugParam"
+        - $ref: "#/components/parameters/JournalParam"
+        - $ref: "#/components/parameters/StudyTypeParam"
+        - $ref: "#/components/parameters/LimitParam"
+        - $ref: "#/components/parameters/NextTokenParam"
+      responses:
+        "200":
+          description: "Paginated list of papers"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PapersList"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "${list_papers_invoke_arn}"
+        payloadFormatVersion: "2.0"
+
+  # =========================================================================
+  # GET /papers/{paper_id} - Get paper detail
+  # =========================================================================
+  /papers/{paper_id}:
+    get:
+      operationId: "getPaper"
+      summary: "Get full paper details"
+      description: "Retrieve full paper metadata and optionally the PageIndex tree structure for detailed exploration."
+      tags:
+        - Papers
+      security:
+        - CognitoAuth: []
+      parameters:
+        - name: paper_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: "PubMed Central ID (e.g., PMC12481837)"
+          example: "PMC12481837"
+        - name: include_tree
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: "Include the PageIndex tree structure in response"
+      responses:
+        "200":
+          description: "Full paper details"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaperDetail"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Paper not found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: "Internal server error"
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "${get_paper_invoke_arn}"
+        payloadFormatVersion: "2.0"
+
+  # =========================================================================
+  # GET /conditions - List indexed conditions
+  # =========================================================================
+  /conditions:
+    get:
+      operationId: "listConditions"
+      summary: "List all indexed skin conditions"
+      description: "Returns all skin conditions with paper counts. Used for the frontend condition picker and search autocomplete."
+      tags:
+        - Reference Data
+      security:
+        - CognitoAuth: []
+      responses:
+        "200":
+          description: "List of conditions with paper counts"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConditionsList"
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+              description: "max-age=3600 (cacheable for 1 hour)"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "${list_conditions_invoke_arn}"
+        payloadFormatVersion: "2.0"
+
+  # =========================================================================
+  # POST /feedback - Submit answer feedback
+  # =========================================================================
+  /feedback:
+    post:
+      operationId: "submitFeedback"
+      summary: "Rate a query response"
+      description: "Doctors can rate answer quality as helpful, not helpful, or incorrect. Used to improve model performance over time."
+      tags:
+        - Feedback
+      security:
+        - CognitoAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FeedbackRequest"
+            example:
+              query_id: "q-2026-03-15-abc123"
+              rating: "helpful"
+              comment: "Accurate treatment protocol with good citations"
+      responses:
+        "200":
+          description: "Feedback submitted successfully"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Feedback submitted successfully"
+        "400":
+          description: "Invalid feedback data"
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "${submit_feedback_invoke_arn}"
+        payloadFormatVersion: "2.0"
+
+  # =========================================================================
+  # GET /chat/history - Get chat session history
+  # =========================================================================
+  /chat/history:
+    get:
+      operationId: "getChatHistory"
+      summary: "Get chat session history"
+      description: "Retrieve previous chat sessions or messages within a session for the authenticated user."
+      tags:
+        - Chatbot
+      security:
+        - CognitoAuth: []
+      parameters:
+        - name: session_id
+          in: query
+          schema:
+            type: string
+            format: uuid
+          description: "Specific session to retrieve. Omit to list all sessions."
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 20
+      responses:
+        "200":
+          description: "Chat history"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sessions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        session_id:
+                          type: string
+                        last_message:
+                          type: string
+                        timestamp:
+                          type: string
+                          format: date-time
+                        message_count:
+                          type: integer
+                  messages:
+                    type: array
+                    description: "Only present when session_id is provided"
+                    items:
+                      type: object
+                      properties:
+                        role:
+                          type: string
+                          enum: [user, assistant]
+                        content:
+                          type: string
+                        timestamp:
+                          type: string
+                          format: date-time
+        "401":
+          description: "Unauthorized"
+        "500":
+          description: "Internal server error"
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "${chatbot_invoke_arn}"
+        payloadFormatVersion: "2.0"
+
+# ---------------------------------------------------------------------------
+# Tags
+# ---------------------------------------------------------------------------
+tags:
+  - name: Query
+    description: "Evidence-based clinical query endpoint (single-shot)"
+  - name: Chatbot
+    description: "RAG-powered conversational AI chatbot for doctors"
+  - name: Papers
+    description: "Browse and explore indexed research papers"
+  - name: Reference Data
+    description: "Conditions, journals, and other reference data"
+  - name: Feedback
+    description: "Answer quality feedback collection"

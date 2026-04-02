@@ -1,0 +1,105 @@
+{
+  "Comment": "DermaIntel Ingestion Pipeline - Fetches PubMed papers, builds decision trees, and extracts metadata",
+  "StartAt": "FetchPapers",
+  "States": {
+    "FetchPapers": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${pubmed_fetcher_arn}",
+        "Payload.$": "$"
+      },
+      "ResultPath": "$.fetchResult",
+      "ResultSelector": {
+        "paperIds.$": "$.Payload.paper_ids",
+        "fetchedCount.$": "$.Payload.fetched_count"
+      },
+      "Next": "ProcessPapers",
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "Next": "IngestionFailed",
+          "ResultPath": "$.error"
+        }
+      ]
+    },
+    "ProcessPapers": {
+      "Type": "Map",
+      "ItemsPath": "$.fetchResult.paperIds",
+      "MaxConcurrency": 3,
+      "Iterator": {
+        "StartAt": "BuildTree",
+        "States": {
+          "BuildTree": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::lambda:invoke",
+            "Parameters": {
+              "FunctionName": "${tree_builder_arn}",
+              "Payload": {
+                "paper_id.$": "$"
+              }
+            },
+            "ResultPath": "$.treeResult",
+            "ResultSelector": {
+              "treeId.$": "$.Payload.tree_id",
+              "paperId.$": "$.Payload.paper_id"
+            },
+            "Next": "ExtractMetadata",
+            "Catch": [
+              {
+                "ErrorEquals": ["States.ALL"],
+                "Next": "PaperProcessingFailed",
+                "ResultPath": "$.error"
+              }
+            ]
+          },
+          "ExtractMetadata": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::lambda:invoke",
+            "Parameters": {
+              "FunctionName": "${metadata_extractor_arn}",
+              "Payload": {
+                "paper_id.$": "$.treeResult.paperId",
+                "tree_id.$": "$.treeResult.treeId"
+              }
+            },
+            "ResultPath": "$.metadataResult",
+            "ResultSelector": {
+              "status.$": "$.Payload.status",
+              "paperId.$": "$.Payload.paper_id"
+            },
+            "End": true,
+            "Catch": [
+              {
+                "ErrorEquals": ["States.ALL"],
+                "Next": "PaperProcessingFailed",
+                "ResultPath": "$.error"
+              }
+            ]
+          },
+          "PaperProcessingFailed": {
+            "Type": "Pass",
+            "Parameters": {
+              "status": "FAILED",
+              "error.$": "$.error"
+            },
+            "End": true
+          }
+        }
+      },
+      "End": true,
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "Next": "IngestionFailed",
+          "ResultPath": "$.error"
+        }
+      ]
+    },
+    "IngestionFailed": {
+      "Type": "Fail",
+      "Error": "IngestionPipelineError",
+      "Cause": "The ingestion pipeline encountered an unrecoverable error. Check CloudWatch logs for details."
+    }
+  }
+}
