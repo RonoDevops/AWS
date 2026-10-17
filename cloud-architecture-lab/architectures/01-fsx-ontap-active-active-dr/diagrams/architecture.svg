@@ -1,0 +1,394 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1430" viewBox="0 0 1800 1430" font-family="'Amazon Ember','Helvetica Neue',Helvetica,Arial,sans-serif">
+<defs>
+<marker id="a-E7157B" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#E7157B"/></marker>
+<marker id="a-7AA116" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7AA116"/></marker>
+<marker id="a-B45309" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B45309"/></marker>
+<marker id="a-0B5CAD" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0B5CAD"/></marker>
+<marker id="a-879196" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#879196"/></marker>
+<marker id="a-232F3E" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#232F3E"/></marker>
+<marker id="a-1A7F37" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1A7F37"/></marker>
+<marker id="a-8C4FFF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8C4FFF"/></marker>
+</defs>
+<rect width="1800" height="1430" fill="#FFFFFF"/>
+<rect width="1800" height="78" fill="#232F3E"/>
+<text x="30" y="36" font-size="26" font-weight="bold" fill="#FFFFFF" text-anchor="start" style="">Amazon FSx for NetApp ONTAP — Active/Active Cross-Region DR</text>
+<text x="30" y="62" font-size="14" font-weight="normal" fill="#D5DBDB" text-anchor="start" style="">Per-dataset write ownership · bidirectional SnapMirror (5-min schedule) · FlexCache global namespace · Multi-AZ HA in each Region</text>
+<text x="1770" y="36" font-size="22" font-weight="bold" fill="#FF9900" text-anchor="end" style="">RPO ≤ 5 min  ·  RTO ≤ 15 min</text>
+<text x="1770" y="62" font-size="14" font-weight="normal" fill="#D5DBDB" text-anchor="end" style="">AZ failure: automatic, ~60 s, RPO 0</text>
+<rect x="300" y="98" width="250" height="92" rx="6" fill="#FFFFFF" stroke="#879196" stroke-width="1.5"/>
+<rect x="312" y="110" width="34" height="34" rx="5" fill="#545B64"/>
+<text x="329.0" y="131.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">USR</text>
+<text x="354" y="122" font-size="11" font-weight="bold" fill="#232F3E" text-anchor="start" style="">Users / on-prem sites</text>
+<text x="354" y="137" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">Site-to-Site VPN or Direct Connect</text>
+<text x="354" y="152" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">to both Regions</text>
+<rect x="730" y="98" width="340" height="92" rx="6" fill="#FFFFFF" stroke="#8C4FFF" stroke-width="1.5"/>
+<rect x="742" y="110" width="34" height="34" rx="5" fill="#8C4FFF"/>
+<text x="759.0" y="131.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">R53</text>
+<text x="784" y="122" font-size="11" font-weight="bold" fill="#232F3E" text-anchor="start" style="">Amazon Route 53</text>
+<text x="784" y="137" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">app.example.com · latency-based routing</text>
+<text x="784" y="152" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">HTTPS health check: 10 s interval, threshold 3</text>
+<text x="784" y="167" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">record TTL 60 s · auto-evicts unhealthy Region</text>
+<rect x="1250" y="98" width="300" height="92" rx="6" fill="#FFFFFF" stroke="#DD344C" stroke-width="1.5"/>
+<rect x="1262" y="110" width="34" height="34" rx="5" fill="#DD344C"/>
+<text x="1279.0" y="131.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">AD</text>
+<text x="1304" y="122" font-size="11" font-weight="bold" fill="#232F3E" text-anchor="start" style="">AWS Managed Microsoft AD</text>
+<text x="1304" y="137" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">multi-Region replication (SMB auth)</text>
+<text x="1304" y="152" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">SVM ⇄ DCs: 53, 88, 135, 389, 445, 464,</text>
+<text x="1304" y="167" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">636, 3268-3269, 49152-65535</text>
+<path d="M550,144 L728,144" fill="none" stroke="#879196" stroke-width="2.2" marker-end="url(#a-879196)"/>
+<rect x="30" y="222" width="740" height="708" rx="4" fill="#FFFFFF" stroke="#00A4A6" stroke-width="2" stroke-dasharray="6 4"/>
+<rect x="30" y="222" width="28" height="28" rx="5" fill="#00A4A6"/>
+<text x="44.0" y="240.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">RG</text>
+<text x="66" y="241" font-size="15" font-weight="bold" fill="#00A4A6" text-anchor="start" style="">Region A · us-east-1 (N. Virginia)</text>
+<rect x="580" y="229" width="178" height="18" rx="3" fill="#1A7F37"/>
+<text x="669.0" y="242" font-size="10.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">WRITE OWNER: /orders</text>
+<rect x="45" y="258" width="710" height="660" rx="4" fill="#FFFFFF" stroke="#8C4FFF" stroke-width="1.6"/>
+<text x="57" y="276" font-size="12.5" font-weight="bold" fill="#8C4FFF" text-anchor="start" style="">VPC 10.10.0.0/16</text>
+<rect x="60" y="288" width="335" height="316" rx="4" fill="#FFFFFF" stroke="#147EBA" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="70" y="305" font-size="11.5" font-weight="bold" fill="#147EBA" text-anchor="start" style="">Availability Zone use1-az1</text>
+<rect x="405" y="288" width="335" height="316" rx="4" fill="#FFFFFF" stroke="#147EBA" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="415" y="305" font-size="11.5" font-weight="bold" fill="#147EBA" text-anchor="start" style="">Availability Zone use1-az2</text>
+<rect x="230" y="314" width="340" height="40" rx="6" fill="#FBEFFC" stroke="#C925D1" stroke-width="1.5"/>
+<text x="400" y="338" font-size="11.5" font-weight="bold" fill="#C925D1" text-anchor="middle" style="">Application Load Balancer · HTTPS 443 · cross-zone</text>
+<rect x="72" y="366" width="311" height="92" rx="3" fill="#E6F6F7" stroke="#00A4A6" stroke-width="1"/>
+<rect x="82" y="376" width="34" height="34" rx="5" fill="#ED7100"/>
+<text x="99.0" y="397.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">EC2</text>
+<text x="124" y="388" font-size="11" font-weight="bold" fill="#232F3E" text-anchor="start" style="">Private app subnet 10.10.1.0/24</text>
+<text x="124" y="403" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">EC2 / EKS workers (NFS &amp; SMB clients)</text>
+<text x="124" y="418" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">mount svm_a:/orders and :/media</text>
+<text x="124" y="433" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">NFSv4.1 TCP 2049 · SMB 3.x TCP 445</text>
+<rect x="72" y="470" width="311" height="122" rx="3" fill="#E6F6F7" stroke="#00A4A6" stroke-width="1"/>
+<rect x="82" y="480" width="34" height="34" rx="5" fill="#7AA116"/>
+<text x="99.0" y="501.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">FSx</text>
+<text x="124" y="492" font-size="11" font-weight="bold" fill="#232F3E" text-anchor="start" style="">FSx subnet 10.10.11.0/24</text>
+<text x="124" y="507" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">ONTAP node 01 — PREFERRED · active</text>
+<text x="124" y="522" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">intercluster LIF 10.10.11.x  (SnapMirror)</text>
+<text x="124" y="537" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">data/mgmt via floating endpoint IPs</text>
+<rect x="82" y="556" width="290" height="26" rx="3" fill="#FFFFFF" stroke="#7AA116" stroke-dasharray="3 2"/>
+<text x="90" y="573" font-size="10.5" font-weight="normal" fill="#545B64" text-anchor="start" style="">ENI + route-table entry for 198.19.255.0/24</text>
+<rect x="417" y="366" width="311" height="92" rx="3" fill="#E6F6F7" stroke="#00A4A6" stroke-width="1"/>
+<rect x="427" y="376" width="34" height="34" rx="5" fill="#ED7100"/>
+<text x="444.0" y="397.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">EC2</text>
+<text x="469" y="388" font-size="11" font-weight="bold" fill="#232F3E" text-anchor="start" style="">Private app subnet 10.10.2.0/24</text>
+<text x="469" y="403" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">EC2 / EKS workers (NFS &amp; SMB clients)</text>
+<text x="469" y="418" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">mount svm_a:/orders and :/media</text>
+<text x="469" y="433" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">NFSv4.1 TCP 2049 · SMB 3.x TCP 445</text>
+<rect x="417" y="470" width="311" height="122" rx="3" fill="#E6F6F7" stroke="#00A4A6" stroke-width="1"/>
+<rect x="427" y="480" width="34" height="34" rx="5" fill="#7AA116"/>
+<text x="444.0" y="501.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">FSx</text>
+<text x="469" y="492" font-size="11" font-weight="bold" fill="#232F3E" text-anchor="start" style="">FSx subnet 10.10.12.0/24</text>
+<text x="469" y="507" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">ONTAP node 02 — STANDBY · passive</text>
+<text x="469" y="522" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">intercluster LIF 10.10.12.x  (SnapMirror)</text>
+<text x="469" y="537" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">data/mgmt via floating endpoint IPs</text>
+<rect x="427" y="556" width="290" height="26" rx="3" fill="#FFFFFF" stroke="#7AA116" stroke-dasharray="3 2"/>
+<text x="435" y="573" font-size="10.5" font-weight="normal" fill="#545B64" text-anchor="start" style="">ENI + route-table entry for 198.19.255.0/24</text>
+<path d="M352,530 L448,530" fill="none" stroke="#7AA116" stroke-width="2" marker-end="url(#a-7AA116)" marker-start="url(#a-7AA116)"/>
+<text x="400" y="547" font-size="10" font-weight="bold" fill="#7AA116" text-anchor="middle" style="">sync HA</text>
+<rect x="60" y="616" width="680" height="290" rx="5" fill="#F2F8E8" stroke="#7AA116" stroke-width="1.8"/>
+<rect x="70" y="626" width="40" height="40" rx="5" fill="#7AA116"/>
+<text x="90.0" y="650.5" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">ONTAP</text>
+<text x="120" y="640.0" font-size="11.5" font-weight="bold" fill="#232F3E" text-anchor="start" style="">Amazon FSx for NetApp ONTAP · fs-A · Multi-AZ HA pair (node 01 / 02)</text>
+<text x="120" y="655.5" font-size="11.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">SSD 2 TiB + capacity pool tier · throughput 512 MBps · KMS CMK at rest · SMB3/NFS4.1 in-flight encryption</text>
+<text x="120" y="674" font-size="11" font-weight="normal" fill="#545B64" text-anchor="start" style="">Floating endpoints 198.19.255.0/24: management (HTTPS 443, SSH 22) · NFS / SMB / iSCSI data</text>
+<rect x="75" y="686" width="650" height="208" rx="4" fill="#FFFFFF" stroke="#7AA116" stroke-width="1.2"/>
+<text x="87" y="704" font-size="11.5" font-weight="bold" fill="#7AA116" text-anchor="start" style="">SVM svm_a  ·  AD-joined (SMB) · export-policy: app subnets of both Regions</text>
+<rect x="87" y="714" width="626" height="52" rx="4" fill="#FFFFFF" stroke="#1A7F37" stroke-width="1.6"/>
+<rect x="87" y="714" width="6" height="52" rx="2" fill="#1A7F37"/>
+<text x="103" y="734" font-size="12.5" font-weight="bold" fill="#232F3E" text-anchor="start" style="">vol_orders</text>
+<rect x="275" y="721" width="112" height="18" rx="3" fill="#1A7F37"/>
+<text x="331.0" y="734" font-size="10.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">RW · ORIGIN</text>
+<text x="397" y="734" font-size="11.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">junction /orders</text>
+<text x="103" y="754" font-size="11" font-weight="normal" fill="#545B64" text-anchor="start" style="">authoritative copy · snapshot every 5 min → replicated to Region B ①</text>
+<rect x="87" y="774" width="626" height="52" rx="4" fill="#FFFFFF" stroke="#B45309" stroke-width="1.6"/>
+<rect x="87" y="774" width="6" height="52" rx="2" fill="#B45309"/>
+<text x="103" y="794" font-size="12.5" font-weight="bold" fill="#232F3E" text-anchor="start" style="">vol_media_cache</text>
+<rect x="275" y="781" width="112" height="18" rx="3" fill="#B45309"/>
+<text x="331.0" y="794" font-size="10.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">FLEXCACHE</text>
+<text x="397" y="794" font-size="11.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">junction /media</text>
+<text x="103" y="814" font-size="11" font-weight="normal" fill="#545B64" text-anchor="start" style="">sparse cache of B:vol_media · local reads, writes forwarded to origin ④</text>
+<rect x="87" y="834" width="626" height="52" rx="4" fill="#FFFFFF" stroke="#0B5CAD" stroke-width="1.6"/>
+<rect x="87" y="834" width="6" height="52" rx="2" fill="#0B5CAD"/>
+<text x="103" y="854" font-size="12.5" font-weight="bold" fill="#232F3E" text-anchor="start" style="">vol_media_dr</text>
+<rect x="275" y="841" width="112" height="18" rx="3" fill="#0B5CAD"/>
+<text x="331.0" y="854" font-size="10.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">DP · READ-ONLY</text>
+<text x="397" y="854" font-size="11.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">junction /dr/media</text>
+<text x="103" y="874" font-size="11" font-weight="normal" fill="#545B64" text-anchor="start" style="">SnapMirror destination of B:vol_media ② · promoted on Region B loss</text>
+<rect x="1030" y="222" width="740" height="708" rx="4" fill="#FFFFFF" stroke="#00A4A6" stroke-width="2" stroke-dasharray="6 4"/>
+<rect x="1030" y="222" width="28" height="28" rx="5" fill="#00A4A6"/>
+<text x="1044.0" y="240.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">RG</text>
+<text x="1066" y="241" font-size="15" font-weight="bold" fill="#00A4A6" text-anchor="start" style="">Region B · us-west-2 (Oregon)</text>
+<rect x="1580" y="229" width="178" height="18" rx="3" fill="#0B5CAD"/>
+<text x="1669.0" y="242" font-size="10.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">WRITE OWNER: /media</text>
+<rect x="1045" y="258" width="710" height="660" rx="4" fill="#FFFFFF" stroke="#8C4FFF" stroke-width="1.6"/>
+<text x="1057" y="276" font-size="12.5" font-weight="bold" fill="#8C4FFF" text-anchor="start" style="">VPC 10.20.0.0/16</text>
+<rect x="1060" y="288" width="335" height="316" rx="4" fill="#FFFFFF" stroke="#147EBA" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="1070" y="305" font-size="11.5" font-weight="bold" fill="#147EBA" text-anchor="start" style="">Availability Zone usw2-az1</text>
+<rect x="1405" y="288" width="335" height="316" rx="4" fill="#FFFFFF" stroke="#147EBA" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="1415" y="305" font-size="11.5" font-weight="bold" fill="#147EBA" text-anchor="start" style="">Availability Zone usw2-az2</text>
+<rect x="1230" y="314" width="340" height="40" rx="6" fill="#FBEFFC" stroke="#C925D1" stroke-width="1.5"/>
+<text x="1400" y="338" font-size="11.5" font-weight="bold" fill="#C925D1" text-anchor="middle" style="">Application Load Balancer · HTTPS 443 · cross-zone</text>
+<rect x="1072" y="366" width="311" height="92" rx="3" fill="#E6F6F7" stroke="#00A4A6" stroke-width="1"/>
+<rect x="1082" y="376" width="34" height="34" rx="5" fill="#ED7100"/>
+<text x="1099.0" y="397.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">EC2</text>
+<text x="1124" y="388" font-size="11" font-weight="bold" fill="#232F3E" text-anchor="start" style="">Private app subnet 10.20.1.0/24</text>
+<text x="1124" y="403" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">EC2 / EKS workers (NFS &amp; SMB clients)</text>
+<text x="1124" y="418" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">mount svm_b:/orders and :/media</text>
+<text x="1124" y="433" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">NFSv4.1 TCP 2049 · SMB 3.x TCP 445</text>
+<rect x="1072" y="470" width="311" height="122" rx="3" fill="#E6F6F7" stroke="#00A4A6" stroke-width="1"/>
+<rect x="1082" y="480" width="34" height="34" rx="5" fill="#7AA116"/>
+<text x="1099.0" y="501.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">FSx</text>
+<text x="1124" y="492" font-size="11" font-weight="bold" fill="#232F3E" text-anchor="start" style="">FSx subnet 10.20.11.0/24</text>
+<text x="1124" y="507" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">ONTAP node 01 — PREFERRED · active</text>
+<text x="1124" y="522" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">intercluster LIF 10.20.11.x  (SnapMirror)</text>
+<text x="1124" y="537" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">data/mgmt via floating endpoint IPs</text>
+<rect x="1082" y="556" width="290" height="26" rx="3" fill="#FFFFFF" stroke="#7AA116" stroke-dasharray="3 2"/>
+<text x="1090" y="573" font-size="10.5" font-weight="normal" fill="#545B64" text-anchor="start" style="">ENI + route-table entry for 198.19.254.0/24</text>
+<rect x="1417" y="366" width="311" height="92" rx="3" fill="#E6F6F7" stroke="#00A4A6" stroke-width="1"/>
+<rect x="1427" y="376" width="34" height="34" rx="5" fill="#ED7100"/>
+<text x="1444.0" y="397.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">EC2</text>
+<text x="1469" y="388" font-size="11" font-weight="bold" fill="#232F3E" text-anchor="start" style="">Private app subnet 10.20.2.0/24</text>
+<text x="1469" y="403" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">EC2 / EKS workers (NFS &amp; SMB clients)</text>
+<text x="1469" y="418" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">mount svm_b:/orders and :/media</text>
+<text x="1469" y="433" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">NFSv4.1 TCP 2049 · SMB 3.x TCP 445</text>
+<rect x="1417" y="470" width="311" height="122" rx="3" fill="#E6F6F7" stroke="#00A4A6" stroke-width="1"/>
+<rect x="1427" y="480" width="34" height="34" rx="5" fill="#7AA116"/>
+<text x="1444.0" y="501.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">FSx</text>
+<text x="1469" y="492" font-size="11" font-weight="bold" fill="#232F3E" text-anchor="start" style="">FSx subnet 10.20.12.0/24</text>
+<text x="1469" y="507" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">ONTAP node 02 — STANDBY · passive</text>
+<text x="1469" y="522" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">intercluster LIF 10.20.12.x  (SnapMirror)</text>
+<text x="1469" y="537" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">data/mgmt via floating endpoint IPs</text>
+<rect x="1427" y="556" width="290" height="26" rx="3" fill="#FFFFFF" stroke="#7AA116" stroke-dasharray="3 2"/>
+<text x="1435" y="573" font-size="10.5" font-weight="normal" fill="#545B64" text-anchor="start" style="">ENI + route-table entry for 198.19.254.0/24</text>
+<path d="M1352,530 L1448,530" fill="none" stroke="#7AA116" stroke-width="2" marker-end="url(#a-7AA116)" marker-start="url(#a-7AA116)"/>
+<text x="1400" y="547" font-size="10" font-weight="bold" fill="#7AA116" text-anchor="middle" style="">sync HA</text>
+<rect x="1060" y="616" width="680" height="290" rx="5" fill="#F2F8E8" stroke="#7AA116" stroke-width="1.8"/>
+<rect x="1070" y="626" width="40" height="40" rx="5" fill="#7AA116"/>
+<text x="1090.0" y="650.5" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">ONTAP</text>
+<text x="1120" y="640.0" font-size="11.5" font-weight="bold" fill="#232F3E" text-anchor="start" style="">Amazon FSx for NetApp ONTAP · fs-B · Multi-AZ HA pair (node 01 / 02)</text>
+<text x="1120" y="655.5" font-size="11.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">SSD 2 TiB + capacity pool tier · throughput 512 MBps · KMS CMK at rest · SMB3/NFS4.1 in-flight encryption</text>
+<text x="1120" y="674" font-size="11" font-weight="normal" fill="#545B64" text-anchor="start" style="">Floating endpoints 198.19.254.0/24: management (HTTPS 443, SSH 22) · NFS / SMB / iSCSI data</text>
+<rect x="1075" y="686" width="650" height="208" rx="4" fill="#FFFFFF" stroke="#7AA116" stroke-width="1.2"/>
+<text x="1087" y="704" font-size="11.5" font-weight="bold" fill="#7AA116" text-anchor="start" style="">SVM svm_b  ·  AD-joined (SMB) · export-policy: app subnets of both Regions</text>
+<rect x="1087" y="714" width="626" height="52" rx="4" fill="#FFFFFF" stroke="#1A7F37" stroke-width="1.6"/>
+<rect x="1087" y="714" width="6" height="52" rx="2" fill="#1A7F37"/>
+<text x="1103" y="734" font-size="12.5" font-weight="bold" fill="#232F3E" text-anchor="start" style="">vol_orders_dr</text>
+<rect x="1275" y="721" width="112" height="18" rx="3" fill="#1A7F37"/>
+<text x="1331.0" y="734" font-size="10.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">DP · READ-ONLY</text>
+<text x="1397" y="734" font-size="11.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">junction /dr/orders</text>
+<text x="1103" y="754" font-size="11" font-weight="normal" fill="#545B64" text-anchor="start" style="">SnapMirror destination of A:vol_orders ① · promoted on Region A loss</text>
+<rect x="1087" y="774" width="626" height="52" rx="4" fill="#FFFFFF" stroke="#B45309" stroke-width="1.6"/>
+<rect x="1087" y="774" width="6" height="52" rx="2" fill="#B45309"/>
+<text x="1103" y="794" font-size="12.5" font-weight="bold" fill="#232F3E" text-anchor="start" style="">vol_orders_cache</text>
+<rect x="1275" y="781" width="112" height="18" rx="3" fill="#B45309"/>
+<text x="1331.0" y="794" font-size="10.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">FLEXCACHE</text>
+<text x="1397" y="794" font-size="11.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">junction /orders</text>
+<text x="1103" y="814" font-size="11" font-weight="normal" fill="#545B64" text-anchor="start" style="">sparse cache of A:vol_orders · local reads, writes forwarded to origin ③</text>
+<rect x="1087" y="834" width="626" height="52" rx="4" fill="#FFFFFF" stroke="#0B5CAD" stroke-width="1.6"/>
+<rect x="1087" y="834" width="6" height="52" rx="2" fill="#0B5CAD"/>
+<text x="1103" y="854" font-size="12.5" font-weight="bold" fill="#232F3E" text-anchor="start" style="">vol_media</text>
+<rect x="1275" y="841" width="112" height="18" rx="3" fill="#0B5CAD"/>
+<text x="1331.0" y="854" font-size="10.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">RW · ORIGIN</text>
+<text x="1397" y="854" font-size="11.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">junction /media</text>
+<text x="1103" y="874" font-size="11" font-weight="normal" fill="#545B64" text-anchor="start" style="">authoritative copy · snapshot every 5 min → replicated to Region A ②</text>
+<path d="M800,190 L800,207 L400,207 L400,312" fill="none" stroke="#8C4FFF" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#a-8C4FFF)"/>
+<path d="M1000,190 L1000,207 L1400,207 L1400,312" fill="none" stroke="#8C4FFF" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#a-8C4FFF)"/>
+<text x="790" y="202" font-size="10.5" font-weight="bold" fill="#8C4FFF" text-anchor="end" style="">latency record → ALB Region A</text>
+<text x="1010" y="202" font-size="10.5" font-weight="bold" fill="#8C4FFF" text-anchor="start" style="">latency record → ALB Region B</text>
+<rect x="782" y="262" width="236" height="248" rx="5" fill="#F8F9FA" stroke="#879196" stroke-width="1.5"/>
+<text x="900" y="282" font-size="12.5" font-weight="bold" fill="#232F3E" text-anchor="middle" style="">Cross-Region data flows</text>
+<circle cx="800" cy="306" r="10" fill="#1A7F37" stroke="#FFF" stroke-width="1.5"/>
+<text x="800" y="310" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">1</text>
+<text x="817" y="310.0" font-size="10.5" font-weight="bold" fill="#232F3E" text-anchor="start" style="">SnapMirror async /orders  A → B</text>
+<text x="817" y="323.5" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">schedule 5min · MirrorAllSnapshots</text>
+<text x="817" y="337.0" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">TCP 11104 ctrl · 11105 data</text>
+<circle cx="800" cy="360.5" r="10" fill="#0B5CAD" stroke="#FFF" stroke-width="1.5"/>
+<text x="800" y="364.5" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">2</text>
+<text x="817" y="364.5" font-size="10.5" font-weight="bold" fill="#232F3E" text-anchor="start" style="">SnapMirror async /media  B → A</text>
+<text x="817" y="378.0" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">schedule 5min · MirrorAllSnapshots</text>
+<text x="817" y="391.5" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">TCP 11104 ctrl · 11105 data</text>
+<circle cx="800" cy="415.0" r="10" fill="#B45309" stroke="#FFF" stroke-width="1.5"/>
+<text x="800" y="419.0" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">3</text>
+<text x="817" y="419.0" font-size="10.5" font-weight="bold" fill="#232F3E" text-anchor="start" style="">FlexCache /orders  B ⇄ A origin</text>
+<text x="817" y="432.5" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">read miss / write-around · 11105</text>
+<circle cx="800" cy="456.0" r="10" fill="#B45309" stroke="#FFF" stroke-width="1.5"/>
+<text x="800" y="460.0" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">4</text>
+<text x="817" y="460.0" font-size="10.5" font-weight="bold" fill="#232F3E" text-anchor="start" style="">FlexCache /media  A ⇄ B origin</text>
+<text x="817" y="473.5" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">read miss / write-around · 11105</text>
+<rect x="742" y="532" width="56" height="56" rx="5" fill="#8C4FFF"/>
+<text x="770.0" y="564.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">TGW</text>
+<rect x="1002" y="532" width="56" height="56" rx="5" fill="#8C4FFF"/>
+<text x="1030.0" y="564.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">TGW</text>
+<path d="M800,560 L1000,560" fill="none" stroke="#8C4FFF" stroke-width="2.4" marker-end="url(#a-8C4FFF)" marker-start="url(#a-8C4FFF)"/>
+<text x="900" y="546" font-size="11" font-weight="bold" fill="#8C4FFF" text-anchor="middle" style="">TGW inter-Region peering</text>
+<text x="900" y="580.0" font-size="10.5" font-weight="normal" fill="#545B64" text-anchor="middle" style="">static routes 10.10/16 ⇄ 10.20/16</text>
+<text x="900" y="593.5" font-size="10.5" font-weight="normal" fill="#545B64" text-anchor="middle" style="">AWS backbone · encrypted in transit</text>
+<text x="900" y="607.0" font-size="10.5" font-weight="normal" fill="#545B64" text-anchor="middle" style="">SG: IC LIF ⇄ IC LIF 11104/11105, ICMP</text>
+<text x="900" y="620.5" font-size="10.5" font-weight="normal" fill="#545B64" text-anchor="middle" style="">~65 ms RTT use1 ⇄ usw2</text>
+<path d="M713,734 L1087,734" fill="none" stroke="#1A7F37" stroke-width="2.6" marker-end="url(#a-1A7F37)"/>
+<circle cx="900" cy="734" r="10" fill="#1A7F37" stroke="#FFF" stroke-width="1.5"/>
+<text x="900" y="738" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">1</text>
+<path d="M1087,866 L713,866" fill="none" stroke="#0B5CAD" stroke-width="2.6" marker-end="url(#a-0B5CAD)"/>
+<circle cx="900" cy="866" r="10" fill="#0B5CAD" stroke="#FFF" stroke-width="1.5"/>
+<text x="900" y="870" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">2</text>
+<path d="M1087,794 L713,748" fill="none" stroke="#B45309" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#a-B45309)" marker-start="url(#a-B45309)"/>
+<circle cx="845" cy="783.0" r="10" fill="#B45309" stroke="#FFF" stroke-width="1.5"/>
+<text x="845" y="787.0" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">3</text>
+<path d="M713,806 L1087,852" fill="none" stroke="#B45309" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#a-B45309)" marker-start="url(#a-B45309)"/>
+<circle cx="955" cy="841.0" r="10" fill="#B45309" stroke="#FFF" stroke-width="1.5"/>
+<text x="955" y="845.0" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">4</text>
+<rect x="30" y="948" width="1740" height="200" rx="5" fill="#FDF1F7" stroke="#E7157B" stroke-width="1.6"/>
+<text x="44" y="970" font-size="13" font-weight="bold" fill="#E7157B" text-anchor="start" style="">Observability &amp; DR automation  (deployed identically in both Regions — each Region watches the relationships it is the destination for)</text>
+<rect x="44" y="984" width="230" height="88" rx="4" fill="#FFFFFF" stroke="#E7157B" stroke-width="1.5"/>
+<rect x="54" y="994" width="34" height="34" rx="5" fill="#E7157B"/>
+<text x="71.0" y="1015.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">EVB</text>
+<text x="96" y="1006.0" font-size="11" font-weight="bold" fill="#232F3E" text-anchor="start" style="">EventBridge Scheduler</text>
+<text x="96" y="1020.5" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">rate(1 minute)</text>
+<text x="96" y="1035.0" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">invokes lag monitor</text>
+<path d="M274,1028 L296,1028" fill="none" stroke="#E7157B" stroke-width="1.8" marker-end="url(#a-E7157B)"/>
+<rect x="297" y="984" width="230" height="88" rx="4" fill="#FFFFFF" stroke="#ED7100" stroke-width="1.5"/>
+<rect x="307" y="994" width="34" height="34" rx="5" fill="#ED7100"/>
+<text x="324.0" y="1015.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">λ</text>
+<text x="349" y="1006.0" font-size="11" font-weight="bold" fill="#232F3E" text-anchor="start" style="">Lambda · lag monitor</text>
+<text x="349" y="1020.5" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">in VPC, FSx-mgmt SG</text>
+<text x="349" y="1035.0" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">GET /api/snapmirror/</text>
+<text x="349" y="1049.5" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">relationships  (HTTPS 443)</text>
+<path d="M527,1028 L549,1028" fill="none" stroke="#E7157B" stroke-width="1.8" marker-end="url(#a-E7157B)"/>
+<rect x="550" y="984" width="230" height="88" rx="4" fill="#FFFFFF" stroke="#E7157B" stroke-width="1.5"/>
+<rect x="560" y="994" width="34" height="34" rx="5" fill="#E7157B"/>
+<text x="577.0" y="1015.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">CW</text>
+<text x="602" y="1006.0" font-size="11" font-weight="bold" fill="#232F3E" text-anchor="start" style="">CloudWatch</text>
+<text x="602" y="1020.5" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">Custom/FSxONTAP</text>
+<text x="602" y="1035.0" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">SnapMirrorLagSeconds</text>
+<text x="602" y="1049.5" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">SnapMirrorHealthy (0/1)</text>
+<path d="M780,1028 L802,1028" fill="none" stroke="#E7157B" stroke-width="1.8" marker-end="url(#a-E7157B)"/>
+<rect x="803" y="984" width="230" height="88" rx="4" fill="#FFFFFF" stroke="#DD344C" stroke-width="1.5"/>
+<rect x="813" y="994" width="34" height="34" rx="5" fill="#DD344C"/>
+<text x="830.0" y="1015.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">ALM</text>
+<text x="855" y="1006.0" font-size="11" font-weight="bold" fill="#232F3E" text-anchor="start" style="">Alarms</text>
+<text x="855" y="1020.5" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">WARN lag &gt; 300 s (1 of 1)</text>
+<text x="855" y="1035.0" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">CRIT lag &gt; 600 s (3 of 3)</text>
+<text x="855" y="1049.5" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">unhealthy = 1 · no data</text>
+<path d="M1033,1028 L1055,1028" fill="none" stroke="#E7157B" stroke-width="1.8" marker-end="url(#a-E7157B)"/>
+<rect x="1056" y="984" width="230" height="88" rx="4" fill="#FFFFFF" stroke="#E7157B" stroke-width="1.5"/>
+<rect x="1066" y="994" width="34" height="34" rx="5" fill="#E7157B"/>
+<text x="1083.0" y="1015.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">SNS</text>
+<text x="1108" y="1006.0" font-size="11" font-weight="bold" fill="#232F3E" text-anchor="start" style="">SNS → on-call</text>
+<text x="1108" y="1020.5" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">PagerDuty / Slack / email</text>
+<text x="1108" y="1035.0" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">runbook link in payload</text>
+<path d="M1286,1028 L1308,1028" fill="none" stroke="#E7157B" stroke-width="1.8" marker-end="url(#a-E7157B)"/>
+<rect x="1309" y="984" width="230" height="88" rx="4" fill="#FFFFFF" stroke="#E7157B" stroke-width="1.5"/>
+<rect x="1319" y="994" width="34" height="34" rx="5" fill="#E7157B"/>
+<text x="1336.0" y="1015.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">SSM</text>
+<text x="1361" y="1006.0" font-size="11" font-weight="bold" fill="#232F3E" text-anchor="start" style="">SSM Automation</text>
+<text x="1361" y="1020.5" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">DR-Failover-&lt;dataset&gt;</text>
+<text x="1361" y="1035.0" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">quiesce → break → remount</text>
+<text x="1361" y="1049.5" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">→ scale app → R53 check</text>
+<rect x="44" y="1084" width="560" height="54" rx="4" fill="#FFFFFF" stroke="#DD344C" stroke-width="1.5"/>
+<rect x="54" y="1094" width="34" height="34" rx="5" fill="#DD344C"/>
+<text x="71.0" y="1115.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">SM</text>
+<text x="96" y="1106" font-size="11" font-weight="bold" fill="#232F3E" text-anchor="start" style="">Secrets Manager</text>
+<text x="96" y="1121" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">fsxadmin / vsadmin credentials · KMS-encrypted · rotation 30 d · read by Lambda + SSM</text>
+<rect x="620" y="1084" width="560" height="54" rx="4" fill="#FFFFFF" stroke="#7AA116" stroke-width="1.5"/>
+<rect x="630" y="1094" width="34" height="34" rx="5" fill="#7AA116"/>
+<text x="647.0" y="1115.5" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">BKP</text>
+<text x="672" y="1106" font-size="11" font-weight="bold" fill="#232F3E" text-anchor="start" style="">AWS Backup (separate from DR)</text>
+<text x="672" y="1121" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">daily + cross-Region copy · 35 d · vault lock — protects against ransomware / bad writes</text>
+<rect x="1196" y="1084" width="560" height="54" rx="4" fill="#FFFFFF" stroke="#545B64" stroke-width="1.5"/>
+<rect x="1206" y="1094" width="34" height="34" rx="5" fill="#545B64"/>
+<text x="1223.0" y="1115.5" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle" style="">SNAP</text>
+<text x="1248" y="1106" font-size="11" font-weight="bold" fill="#232F3E" text-anchor="start" style="">ONTAP local snapshots</text>
+<text x="1248" y="1121" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">hourly ×24, daily ×7 on every RW volume · instant file-level restore · SnapLock optional</text>
+<text x="30" y="1178" font-size="14" font-weight="bold" fill="#232F3E" text-anchor="start" style="">Port matrix (Security Groups / NACLs)</text>
+<rect x="30" y="1188" width="760" height="22" fill="#232F3E"/>
+<text x="38" y="1203" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="start" style="">Purpose</text>
+<text x="228" y="1203" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="start" style="">Protocol / port</text>
+<text x="528" y="1203" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="start" style="">Source → Destination</text>
+<rect x="30" y="1210" width="760" height="20" fill="#FFFFFF"/>
+<text x="38" y="1224" font-size="10.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">Cluster &amp; SVM peering</text>
+<text x="228" y="1224" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">ICMP + TCP 11104</text>
+<text x="528" y="1224" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">IC LIFs Region A ⇄ IC LIFs Region B</text>
+<rect x="30" y="1230" width="760" height="20" fill="#F3F4F6"/>
+<text x="38" y="1244" font-size="10.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">SnapMirror / FlexCache data</text>
+<text x="228" y="1244" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">TCP 11105</text>
+<text x="528" y="1244" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">IC LIFs Region A ⇄ IC LIFs Region B</text>
+<rect x="30" y="1250" width="760" height="20" fill="#FFFFFF"/>
+<text x="38" y="1264" font-size="10.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">ONTAP REST API / System Mgr</text>
+<text x="228" y="1264" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">TCP 443</text>
+<text x="528" y="1264" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">Lambda, SSM, admin bastion → mgmt endpoint</text>
+<rect x="30" y="1270" width="760" height="20" fill="#F3F4F6"/>
+<text x="38" y="1284" font-size="10.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">ONTAP CLI</text>
+<text x="228" y="1284" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">TCP 22</text>
+<text x="528" y="1284" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">admin bastion → mgmt endpoint</text>
+<rect x="30" y="1290" width="760" height="20" fill="#FFFFFF"/>
+<text x="38" y="1304" font-size="10.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">NFS v3 / v4.1</text>
+<text x="228" y="1304" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">TCP/UDP 111, 635, 2049, 4045-4046, 4049</text>
+<text x="528" y="1304" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">app subnets → SVM data endpoint</text>
+<rect x="30" y="1310" width="760" height="20" fill="#F3F4F6"/>
+<text x="38" y="1324" font-size="10.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">SMB 3.x</text>
+<text x="228" y="1324" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">TCP 445</text>
+<text x="528" y="1324" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">app subnets / users → SVM data endpoint</text>
+<rect x="30" y="1330" width="760" height="20" fill="#FFFFFF"/>
+<text x="38" y="1344" font-size="10.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">iSCSI (optional)</text>
+<text x="228" y="1344" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">TCP 3260</text>
+<text x="528" y="1344" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">app subnets → SVM iSCSI endpoint</text>
+<rect x="30" y="1350" width="760" height="20" fill="#F3F4F6"/>
+<text x="38" y="1364" font-size="10.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">Active Directory</text>
+<text x="228" y="1364" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">53, 88, 123, 135, 389, 445, 464, 636, 3268-9, 49152-65535</text>
+<text x="528" y="1364" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">SVM → domain controllers</text>
+<rect x="30" y="1370" width="760" height="20" fill="#FFFFFF"/>
+<text x="38" y="1384" font-size="10.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">App ingress</text>
+<text x="228" y="1384" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">TCP 443</text>
+<text x="528" y="1384" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">Route 53 HC / clients → ALB → targets</text>
+<rect x="30" y="1188" width="760" height="202" fill="none" stroke="#D5DBDB"/>
+<text x="810" y="1178" font-size="14" font-weight="bold" fill="#232F3E" text-anchor="start" style="">Timing budget (RPO / RTO)</text>
+<rect x="810" y="1188" width="560" height="22" fill="#232F3E"/>
+<text x="818" y="1203" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="start" style="">Stage</text>
+<text x="1088" y="1203" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="start" style="">Value</text>
+<rect x="810" y="1210" width="560" height="20" fill="#FFFFFF"/>
+<text x="818" y="1224" font-size="10.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">SnapMirror schedule (RPO driver)</text>
+<text x="1088" y="1224" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">every 5 min (ONTAP 5min cron)</text>
+<rect x="810" y="1230" width="560" height="20" fill="#F3F4F6"/>
+<text x="818" y="1244" font-size="10.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">Lag poll → metric</text>
+<text x="1088" y="1244" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">60 s</text>
+<rect x="810" y="1250" width="560" height="20" fill="#FFFFFF"/>
+<text x="818" y="1264" font-size="10.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">Lag alarm WARN / CRIT</text>
+<text x="1088" y="1264" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">&gt; 300 s / &gt; 600 s</text>
+<rect x="810" y="1270" width="560" height="20" fill="#F3F4F6"/>
+<text x="818" y="1284" font-size="10.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">AZ failover inside a Region</text>
+<text x="1088" y="1284" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">automatic · ~60 s · RPO 0</text>
+<rect x="810" y="1290" width="560" height="20" fill="#FFFFFF"/>
+<text x="818" y="1304" font-size="10.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">Region outage detection</text>
+<text x="1088" y="1304" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">R53 10 s × 3 = 30 s · CW alarm ≤ 3 min</text>
+<rect x="810" y="1310" width="560" height="20" fill="#F3F4F6"/>
+<text x="818" y="1324" font-size="10.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">Failover decision (human-approved)</text>
+<text x="1088" y="1324" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">≤ 5 min</text>
+<rect x="810" y="1330" width="560" height="20" fill="#FFFFFF"/>
+<text x="818" y="1344" font-size="10.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">snapmirror break + junction remount</text>
+<text x="1088" y="1344" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">1-2 min (SSM Automation)</text>
+<rect x="810" y="1350" width="560" height="20" fill="#F3F4F6"/>
+<text x="818" y="1364" font-size="10.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">Client DNS convergence</text>
+<text x="1088" y="1364" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">TTL 60 s</text>
+<rect x="810" y="1370" width="560" height="20" fill="#FFFFFF"/>
+<text x="818" y="1384" font-size="10.5" font-weight="bold" fill="#545B64" text-anchor="start" style="">Regional RTO / RPO target</text>
+<text x="1088" y="1384" font-size="10.5" font-weight="normal" fill="#232F3E" text-anchor="start" style="">≤ 15 min  /  ≤ 5 min + last transfer</text>
+<rect x="810" y="1188" width="560" height="202" fill="none" stroke="#D5DBDB"/>
+<text x="1390" y="1178" font-size="14" font-weight="bold" fill="#232F3E" text-anchor="start" style="">Legend</text>
+<path d="M1392,1202 L1440,1202" fill="none" stroke="#1A7F37" stroke-width="2.2" marker-end="url(#a-1A7F37)"/>
+<text x="1452" y="1206" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">SnapMirror A → B (/orders)</text>
+<path d="M1392,1226 L1440,1226" fill="none" stroke="#0B5CAD" stroke-width="2.2" marker-end="url(#a-0B5CAD)"/>
+<text x="1452" y="1230" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">SnapMirror B → A (/media)</text>
+<path d="M1392,1250 L1440,1250" fill="none" stroke="#B45309" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#a-B45309)"/>
+<text x="1452" y="1254" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">FlexCache origin ⇄ cache</text>
+<path d="M1392,1274 L1440,1274" fill="none" stroke="#7AA116" stroke-width="2.2" marker-end="url(#a-7AA116)"/>
+<text x="1452" y="1278" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">Multi-AZ HA sync (in-Region)</text>
+<path d="M1392,1298 L1440,1298" fill="none" stroke="#8C4FFF" stroke-width="2.2" marker-end="url(#a-8C4FFF)"/>
+<text x="1452" y="1302" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">TGW peering / DNS routing</text>
+<rect x="1392" y="1314" width="48" height="16" rx="2" fill="#FFFFFF" stroke="#00A4A6" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="1452" y="1326" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">AWS Region</text>
+<rect x="1392" y="1338" width="48" height="16" rx="2" fill="#FFFFFF" stroke="#8C4FFF" stroke-width="1.5"/>
+<text x="1452" y="1350" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">VPC</text>
+<rect x="1392" y="1362" width="48" height="16" rx="2" fill="#FFFFFF" stroke="#147EBA" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="1452" y="1374" font-size="11" font-weight="normal" fill="#232F3E" text-anchor="start" style="">Availability Zone</text>
+<text x="1390" y="1402" font-size="10.5" font-weight="normal" fill="#545B64" text-anchor="start" style="font-style:italic;">IPs are illustrative; FSx assigns LIF IPs.</text>
+<text x="30" y="1414" font-size="11" font-weight="normal" fill="#545B64" text-anchor="start" style="">cloud-architecture-lab · 01-fsx-ontap-active-active-dr · design + POC, validate against current AWS &amp; NetApp docs before production</text>
+</svg>

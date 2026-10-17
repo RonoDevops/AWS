@@ -1,0 +1,9 @@
+name                = "fsxdr"
+region_a            = "us-east-1"
+region_b            = "us-west-2"
+azs_a               = ["us-east-1a", "us-east-1b"]
+azs_b               = ["us-west-2a", "us-west-2b"]
+fsx_storage_gib     = 1024
+fsx_throughput_mbps = 512
+volume_size_mib     = 102400
+alarm_email         = "you@example.com"
